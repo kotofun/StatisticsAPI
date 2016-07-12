@@ -1,0 +1,30 @@
+{
+    "name": "kursomir/statistics-api",
+    "description": "Statistics API for Kursomir project.",
+    "type": "project",
+    "require": {
+        "php": ">=5.5.9",
+        "ext-pgsql": "*",
+        "ext-openssl": "*",
+        "ext-mbstring": "*",
+        "laravel/lumen-framework": "5.2.*",
+        "vlucas/phpdotenv": "~2.2",
+        "nordsoftware/lumen-elasticsearch": "^0.6.0"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "phpunit/phpunit": "~4.0",
+        "friendsofphp/php-cs-fixer": "^1.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/",
+            "database/"
+        ]
+    }
+}
