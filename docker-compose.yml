@@ -1,0 +1,33 @@
+php:
+    build: ./.docker/php-fpm
+    expose:
+        - "9000"
+    volumes:
+        - ./:/var/www
+    links:
+        - core_db
+        - elasticsearch
+nginx:
+    build: ./.docker/nginx
+    ports:
+       - "80:80"
+    links:
+       - php
+    volumes_from:
+       - php
+    volumes:
+       - ./storage/logs/nginx/:/var/log/nginx
+elasticsearch:
+    image: elasticsearch:latest
+    ports:
+       - "9200"
+core_db:
+    image: postgres:latest
+    environment:
+        POSTGRES_DB: core_api
+        POSTGRES_USER: kursomir
+        POSTGRES_PASSWORD: kursomir
+coreapi:
+    build: ./.docker/core-api-php
+    links:
+        - core_db
